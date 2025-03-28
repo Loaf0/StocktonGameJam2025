@@ -1,0 +1,180 @@
+[gd_scene load_steps=15 format=3 uid="uid://du315ucv5c38x"]
+
+[ext_resource type="Script" uid="uid://d3apeqoylflqd" path="res://TestCharacter/player.gd" id="1_n2c38"]
+[ext_resource type="Texture2D" uid="uid://bgdlmw5qd76ft" path="res://TestCharacter/LegTest.png" id="2_hyobf"]
+[ext_resource type="Texture2D" uid="uid://cp621as1px1cf" path="res://TestCharacter/BodyTest.png" id="3_fgq2d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evxy4"]
+size = Vector2(38, 70.5)
+
+[sub_resource type="Animation" id="Animation_mqtt6"]
+resource_name = "Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_eqaap"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4qrwe"]
+resource_name = "Walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fsol"]
+_data = {
+&"Idle": SubResource("Animation_mqtt6"),
+&"RESET": SubResource("Animation_eqaap"),
+&"Walk": SubResource("Animation_4qrwe")
+}
+
+[sub_resource type="Animation" id="Animation_n2c38"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_hyobf"]
+resource_name = "LookNeutral"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_fgq2d"]
+resource_name = "LookUp"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_t2d7j"]
+resource_name = "LookDown"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mqtt6"]
+_data = {
+&"LookDown": SubResource("Animation_t2d7j"),
+&"LookNeutral": SubResource("Animation_hyobf"),
+&"LookUp": SubResource("Animation_fgq2d"),
+&"RESET": SubResource("Animation_n2c38")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e18g2"]
+size = Vector2(741.5, 69)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, 263)
+script = ExtResource("1_n2c38")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_evxy4")
+
+[node name="Legs" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, 3)
+texture = ExtResource("2_hyobf")
+hframes = 4
+
+[node name="Body" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, 3)
+texture = ExtResource("3_fgq2d")
+hframes = 4
+frame = 2
+
+[node name="LegsAnimPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+root_node = NodePath("../BodyAnimPlayer")
+libraries = {
+&"": SubResource("AnimationLibrary_0fsol")
+}
+
+[node name="BodyAnimPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_mqtt6")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 33)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 343)
+shape = SubResource("RectangleShape2D_e18g2")
