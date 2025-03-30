@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bao7hf8bsal02"]
+[gd_scene load_steps=7 format=3 uid="uid://bao7hf8bsal02"]
 
 [ext_resource type="Shader" uid="uid://cbx4l377rpj38" path="res://Main Menu/ScrollingTexture.gdshader" id="1_fxvm1"]
 [ext_resource type="Script" uid="uid://blpgirnmnsbxk" path="res://Main Menu/main_menu.gd" id="1_x7wbc"]
 [ext_resource type="Texture2D" uid="uid://070ljb0jphl3" path="res://Main Menu/backgro.png" id="2_2gs5d"]
 [ext_resource type="Texture2D" uid="uid://bwa2s2iacp513" path="res://Main Menu/Car.png" id="4_n72od"]
+[ext_resource type="Texture2D" uid="uid://blyufeb6wwyw4" path="res://Main Menu/mailbox.png" id="5_n72od"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x7wbc"]
 shader = ExtResource("1_fxvm1")
@@ -17,18 +18,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x7wbc")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="StartScreen" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="StartScreen"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_x7wbc")
-layout_mode = 0
 offset_left = 1.0
 offset_top = -3.0
 offset_right = 1153.0
 offset_bottom = 649.0
 texture = ExtResource("2_2gs5d")
 
-[node name="Car" type="TextureRect" parent="."]
-layout_mode = 0
+[node name="Car" type="TextureRect" parent="StartScreen"]
 offset_left = 247.0
 offset_top = 331.0
 offset_right = 913.0
@@ -37,38 +41,89 @@ scale = Vector2(0.615, 0.615)
 pivot_offset = Vector2(176, 168)
 texture = ExtResource("4_n72od")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="StartScreen"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -276.0
-offset_top = -160.0
-offset_right = -92.0
-offset_bottom = -53.0
+offset_left = 836.0
+offset_top = 448.0
+offset_right = 1020.0
+offset_bottom = 555.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="StartScreen/VBoxContainer"]
 layout_mode = 2
 text = "Start"
 
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="StartScreen/VBoxContainer"]
 layout_mode = 2
 text = "Option"
 
-[node name="Exit Game" type="Button" parent="VBoxContainer"]
+[node name="Exit Game" type="Button" parent="StartScreen/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
+[node name="Label" type="Label" parent="StartScreen"]
 offset_left = 18.0
 offset_top = 19.0
 offset_right = 158.0
 offset_bottom = 48.0
 scale = Vector2(3.29, 3.29)
 text = "Black Magic GPS"
+
+[node name="LevelSelect" type="Control" parent="."]
+visible = false
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="LevelSelect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3.33698, 2.347)
+texture = ExtResource("5_n72od")
+
+[node name="Level Select Exit" type="Button" parent="LevelSelect"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 66
+text = "Back"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 150.0
+offset_right = 1138.0
+offset_bottom = 276.0
+theme_override_constants/separation = 111
+
+[node name="Level 1" type="Button" parent="LevelSelect/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "Level 1"
+
+[node name="Level 2" type="Button" parent="LevelSelect/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "Level 2"
+
+[node name="Level 3" type="Button" parent="LevelSelect/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "Level 3
+"
+
+[connection signal="pressed" from="StartScreen/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="StartScreen/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="StartScreen/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="LevelSelect/Level Select Exit" to="." method="_on_level_select_exit_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/Level 1" to="." method="_on_level_1_pressed"]

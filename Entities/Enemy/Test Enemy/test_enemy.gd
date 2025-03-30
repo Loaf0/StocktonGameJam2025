@@ -6,6 +6,7 @@ const GRAVITY = 900.0
 @onready var right_floor_cast = $RightFloorCast
 @onready var left_floor_cast = $LeftFloorCast
 @onready var turn_timer = $TurnTimer
+@onready var hitbox = $hitbox
 
 var direction = 1
 var health = 1
@@ -36,3 +37,7 @@ func take_damage(damage_taken : int):
 
 func death():
 	queue_free()
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.has_method("take_damage") and body.is_in_group("player"):
+		body.take_damage(1)

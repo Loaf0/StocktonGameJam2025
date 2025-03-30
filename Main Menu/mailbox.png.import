@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp621as1px1cf"
-path="res://.godot/imported/BodyTest.png-858fc89bb6ecbb85c02d520ef5958e42.ctex"
+uid="uid://blyufeb6wwyw4"
+path="res://.godot/imported/mailbox.png-e5afc1f318bdc37d807a73eecc018ebb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TestCharacter/BodyTest.png"
-dest_files=["res://.godot/imported/BodyTest.png-858fc89bb6ecbb85c02d520ef5958e42.ctex"]
+source_file="res://Main Menu/mailbox.png"
+dest_files=["res://.godot/imported/mailbox.png-e5afc1f318bdc37d807a73eecc018ebb.ctex"]
 
 [params]
 

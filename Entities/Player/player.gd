@@ -18,6 +18,8 @@ extends CharacterBody2D
 @onready var right_cast = $PlayerCollider/RightCast
 @onready var ground_hitbox = $G_Hitbox
 @onready var air_hitbox = $A_Hitbox
+@onready var sprite = $Sprite
+@onready var invul_timer = $InvulTimer
 
 var is_running: bool = false
 var on_wall: bool = false
@@ -27,6 +29,8 @@ var jump_time: float = 0.0
 var is_jumping: bool = false
 var direction: int = 1  # 1 for right, -1 for left
 var just_wall_jumped: bool = false
+
+var health = 3
 
 func _physics_process(delta):
 	var direction_input = Input.get_axis("Left", "Right")
@@ -82,11 +86,21 @@ func _physics_process(delta):
 		if air_hitbox.scale.x != direction:
 			air_hitbox.scale.x = direction
 			ground_hitbox.scale.x = direction
+		if direction > 0:
+			sprite.flip_h = true
+		else:
+			sprite.flip_h = false
 	
 	if just_wall_jumped:
+		sprite.flip_h = !sprite.flip_h
 		air_hitbox.scale.x = -air_hitbox.scale.x
 		ground_hitbox.scale.x = -ground_hitbox.scale.x
 		just_wall_jumped = false
+	
+	if !invul_timer.is_stopped():
+		sprite.modulate = Color(1, 1, 1, .5)
+	else:
+		sprite.modulate = Color(1, 1, 1, 1)
 	
 	move_and_slide()
 
@@ -97,12 +111,21 @@ func attack():
 	if is_on_floor():
 		# Ground attack animation
 		for body in ground_hitbox.get_overlapping_bodies():
-			if body.has_method("take_damage"):
+			if body.has_method("take_damage") and !body.is_in_group("player"):
 				body.take_damage(1)
 		pass
 	else:
 		# Air attack animation
 		for body in air_hitbox.get_overlapping_bodies():
-			if body.has_method("take_damage"):
+			if body.has_method("take_damage") and !body.is_in_group("player"):
 				body.take_damage(1)
 		pass
+
+func take_damage(damage_taken : int):
+	if invul_timer.is_stopped():
+		health = health - damage_taken
+		invul_timer.start()
+		print(health)
+
+func get_health():
+	return health

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cu0m63v7pqbwb"]
 
-[ext_resource type="PackedScene" uid="uid://dghjnnwt1a7x2" path="res://MagicGPSTestPlayer/player.tscn" id="1_75ftw"]
-[ext_resource type="PackedScene" uid="uid://bgvs4d7hgb1h8" path="res://MagicGPSTestPlayer/Camera.tscn" id="1_h83b8"]
-[ext_resource type="PackedScene" uid="uid://cbr5s3p6b4pp4" path="res://MagicGPSTestPlayer/TestEnemy.tscn" id="3_cm3oq"]
+[ext_resource type="PackedScene" uid="uid://bgvs4d7hgb1h8" path="res://Entities/Player/Camera.tscn" id="1_vrtqf"]
+[ext_resource type="PackedScene" uid="uid://dghjnnwt1a7x2" path="res://Entities/Player/player.tscn" id="2_yq830"]
+[ext_resource type="PackedScene" uid="uid://cbr5s3p6b4pp4" path="res://Entities/Enemy/Test Enemy/TestEnemy.tscn" id="3_4nrq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h83b8"]
 size = Vector2(80.9998, 239)
@@ -12,12 +12,14 @@ size = Vector2(3780.75, 69)
 
 [node name="Test Level" type="Node2D"]
 
-[node name="Camera" parent="." instance=ExtResource("1_h83b8")]
-offset = Vector2(0, -85)
+[node name="Camera" parent="." instance=ExtResource("1_vrtqf")]
 
-[node name="Player" parent="." instance=ExtResource("1_75ftw")]
+[node name="Player" parent="." instance=ExtResource("2_yq830")]
 
-[node name="TestEnemy" parent="." instance=ExtResource("3_cm3oq")]
+[node name="TestEnemy2" parent="." instance=ExtResource("3_4nrq0")]
+position = Vector2(347, -14)
+
+[node name="TestEnemy" parent="." instance=ExtResource("3_4nrq0")]
 position = Vector2(-205, 54)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbr5s3p6b4pp4"]
+
+[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Test Enemy/test_enemy.gd" id="1_0v3n6"]
+[ext_resource type="Texture2D" uid="uid://df556fuiqyifc" path="res://Entities/Enemy/Test Enemy/image_2025-03-30_164258789-removebg-preview.png" id="2_ik4k5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oie2v"]
+radius = 25.0799
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70rh2"]
+size = Vector2(37, 36)
+
+[node name="TestEnemy" type="CharacterBody2D"]
+script = ExtResource("1_0v3n6")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_oie2v")
+
+[node name="TurnTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_70rh2")
+
+[node name="RightFloorCast" type="RayCast2D" parent="."]
+position = Vector2(19, 0)
+target_position = Vector2(0, 24)
+
+[node name="LeftFloorCast" type="RayCast2D" parent="."]
+position = Vector2(-19, 0)
+target_position = Vector2(0, 24)
+
+[node name="Image2025-03-30164258789-removebg-preview" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.0877155, 0.0877155)
+texture = ExtResource("2_ik4k5")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
