@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu0m63v7pqbwb"]
+
+[ext_resource type="PackedScene" uid="uid://dghjnnwt1a7x2" path="res://MagicGPSTestPlayer/player.tscn" id="1_75ftw"]
+[ext_resource type="PackedScene" uid="uid://bgvs4d7hgb1h8" path="res://MagicGPSTestPlayer/Camera.tscn" id="1_h83b8"]
+[ext_resource type="PackedScene" uid="uid://cbr5s3p6b4pp4" path="res://MagicGPSTestPlayer/TestEnemy.tscn" id="3_cm3oq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h83b8"]
+size = Vector2(80.9998, 239)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e18g2"]
+size = Vector2(3780.75, 69)
+
+[node name="Test Level" type="Node2D"]
+
+[node name="Camera" parent="." instance=ExtResource("1_h83b8")]
+offset = Vector2(0, -85)
+
+[node name="Player" parent="." instance=ExtResource("1_75ftw")]
+
+[node name="TestEnemy" parent="." instance=ExtResource("3_cm3oq")]
+position = Vector2(-205, 54)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(320, 66)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_h83b8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-338, -197)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_e18g2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1518.63, 141)
+shape = SubResource("RectangleShape2D_e18g2")
