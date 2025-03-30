@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu0m63v7pqbwb"]
+[gd_scene load_steps=7 format=3 uid="uid://cu0m63v7pqbwb"]
 
 [ext_resource type="PackedScene" uid="uid://bgvs4d7hgb1h8" path="res://Entities/Player/Camera.tscn" id="1_vrtqf"]
 [ext_resource type="PackedScene" uid="uid://dghjnnwt1a7x2" path="res://Entities/Player/player.tscn" id="2_yq830"]
 [ext_resource type="PackedScene" uid="uid://cbr5s3p6b4pp4" path="res://Entities/Enemy/Test Enemy/TestEnemy.tscn" id="3_4nrq0"]
+[ext_resource type="PackedScene" uid="uid://jlk8vyiifylw" path="res://Entities/Enemy/DeathWall/deathwall.tscn" id="4_yq830"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h83b8"]
 size = Vector2(80.9998, 239)
@@ -22,6 +23,9 @@ position = Vector2(347, -14)
 [node name="TestEnemy" parent="." instance=ExtResource("3_4nrq0")]
 position = Vector2(-205, 54)
 
+[node name="Deathwall" parent="." instance=ExtResource("4_yq830")]
+position = Vector2(-997, -869)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
@@ -37,3 +41,24 @@ shape = SubResource("RectangleShape2D_e18g2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1518.63, 141)
 shape = SubResource("RectangleShape2D_e18g2")
+
+[node name="ColorRect3" type="ColorRect" parent="StaticBody2D"]
+offset_left = -375.0
+offset_top = -441.0
+offset_right = -304.0
+offset_bottom = 105.0
+color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D"]
+offset_left = -357.0
+offset_top = 105.0
+offset_right = 925.0
+offset_bottom = 145.0
+color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = 197.0
+offset_top = 26.0
+offset_right = 443.0
+offset_bottom = 107.0
+color = Color(0.140447, 0.140447, 0.140447, 1)

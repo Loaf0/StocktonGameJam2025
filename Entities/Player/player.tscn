@@ -18,7 +18,7 @@ height = 88.0
 script = ExtResource("1_7fm2q")
 
 [node name="InvulTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.5
 one_shot = true
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="." groups=["player"]]

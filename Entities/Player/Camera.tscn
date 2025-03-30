@@ -15,6 +15,7 @@ position_smoothing_speed = 50.0
 script = ExtResource("1_e6e23")
 
 [node name="Healthbar" type="ProgressBar" parent="."]
+z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,4 +32,3 @@ step = 1.0
 value = 2.0
 rounded = true
 show_percentage = false
-metadata/_edit_use_anchors_ = true
