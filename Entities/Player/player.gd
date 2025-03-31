@@ -87,9 +87,9 @@ func _physics_process(delta):
 			air_hitbox.scale.x = direction
 			ground_hitbox.scale.x = direction
 		if direction > 0:
-			sprite.flip_h = true
-		else:
 			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
 	
 	if just_wall_jumped:
 		sprite.flip_h = !sprite.flip_h

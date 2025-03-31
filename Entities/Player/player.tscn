@@ -1,27 +1,30 @@
 [gd_scene load_steps=6 format=3 uid="uid://dghjnnwt1a7x2"]
 
 [ext_resource type="Script" uid="uid://bqrxrhfswmnia" path="res://Entities/Player/player.gd" id="1_7fm2q"]
-[ext_resource type="Texture2D" uid="uid://baj6lidinyvhe" path="res://Entities/Player/tempasset.png" id="2_3uyv8"]
+[ext_resource type="Texture2D" uid="uid://cq8w0ps0dilv2" path="res://Entities/Player/basic_idle.png" id="2_3uyv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fm2q"]
-size = Vector2(53, 85.6563)
+size = Vector2(24, 59)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fm2q"]
-radius = 52.0
-height = 104.0
+radius = 29.0
+height = 58.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2x6ej"]
-radius = 28.0
-height = 88.0
+radius = 14.0
+height = 56.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_7fm2q")
+run_speed = 600.0
 
 [node name="InvulTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2(0, -0.499999)
 shape = SubResource("RectangleShape2D_7fm2q")
 
 [node name="LeftCast" type="RayCast2D" parent="PlayerCollider"]
@@ -33,7 +36,7 @@ target_position = Vector2(36, 0)
 [node name="A_Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="A_Hitbox"]
-position = Vector2(31, 18)
+position = Vector2(27, 18)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_7fm2q")
 debug_color = Color(0.847059, 0, 0.905882, 0.113725)
@@ -41,13 +44,10 @@ debug_color = Color(0.847059, 0, 0.905882, 0.113725)
 [node name="G_Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="G_Hitbox"]
-position = Vector2(33, 0)
+position = Vector2(30, -4)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_2x6ej")
 debug_color = Color(0.764706, 0.164706, 1, 0.0313726)
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(2, 5.96046e-08)
-scale = Vector2(0.165, 0.165)
 texture = ExtResource("2_3uyv8")
-flip_h = true

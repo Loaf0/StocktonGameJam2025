@@ -26,6 +26,7 @@ offset_bottom = 40.0
 [node name="Background" type="TextureRect" parent="StartScreen"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_x7wbc")
+layout_mode = 0
 offset_left = 1.0
 offset_top = -3.0
 offset_right = 1153.0
@@ -33,6 +34,7 @@ offset_bottom = 649.0
 texture = ExtResource("2_2gs5d")
 
 [node name="Car" type="TextureRect" parent="StartScreen"]
+layout_mode = 0
 offset_left = 247.0
 offset_top = 331.0
 offset_right = 913.0
@@ -69,6 +71,7 @@ layout_mode = 2
 text = "Exit"
 
 [node name="Label" type="Label" parent="StartScreen"]
+layout_mode = 0
 offset_left = 18.0
 offset_top = 19.0
 offset_right = 158.0
