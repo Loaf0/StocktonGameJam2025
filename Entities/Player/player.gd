@@ -67,7 +67,11 @@ func _physics_process(delta):
 			jump_time = 0.0
 		elif on_wall and can_wall_jump:
 			just_wall_jumped = true
-			velocity = Vector2(-wall_jump_force.x * direction, wall_jump_force.y)
+			if left_cast.is_colliding():
+				velocity = Vector2(wall_jump_force.x, wall_jump_force.y)
+			else:
+				velocity = Vector2(-wall_jump_force.x, wall_jump_force.y)
+			
 			can_wall_jump = false
 			is_jumping = false
 
@@ -92,9 +96,14 @@ func _physics_process(delta):
 			sprite.flip_h = true
 	
 	if just_wall_jumped:
-		sprite.flip_h = !sprite.flip_h
-		air_hitbox.scale.x = -air_hitbox.scale.x
-		ground_hitbox.scale.x = -ground_hitbox.scale.x
+		if left_cast.is_colliding() and sprite.flip_h:
+			sprite.flip_h = false
+			air_hitbox.scale.x = 1
+			ground_hitbox.scale.x = 1
+		elif right_cast.is_colliding() and !sprite.flip_h:
+			sprite.flip_h = true
+			air_hitbox.scale.x = -1
+			ground_hitbox.scale.x = -1
 		just_wall_jumped = false
 	
 	if !invul_timer.is_stopped():

@@ -9,7 +9,9 @@ bg_color = Color(0.81, 0, 0.0134998, 1)
 bg_color = Color(0.170617, 0.58, 0.1334, 1)
 
 [node name="Camera" type="Camera2D"]
-offset = Vector2(0, 75)
+offset = Vector2(0, -48)
+zoom = Vector2(3, 3)
+process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 50.0
 script = ExtResource("1_e6e23")
