@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var walk_speed: float = 250.0
-@export var run_speed: float = 400.0
+@export var walk_speed: float = 180.0
+@export var run_speed: float = 280.0
 @export var jump_force: float = 420.0
 @export var min_jump_force: float = 250.0
 @export var max_jump_hold_time: float = 0.2
@@ -10,9 +10,9 @@ extends CharacterBody2D
 @export var wall_slide_speed: float = 90.0
 @export var wall_jump_force: Vector2 = Vector2(320, -360)
 @export var acceleration: float = 1500.0
-@export var air_acceleration: float = 800.0
-@export var friction: float = 1500.0
-@export var air_friction: float = 250.0
+@export var air_acceleration: float = 750.0
+@export var friction: float = 1200.0
+@export var air_friction: float = 300.0
 
 @onready var left_cast = $PlayerCollider/LeftCast
 @onready var right_cast = $PlayerCollider/RightCast
@@ -132,6 +132,7 @@ func attack():
 
 func take_damage(damage_taken : int):
 	if invul_timer.is_stopped():
+		print(health)
 		health = health - damage_taken
 		invul_timer.start()
 		print(health)

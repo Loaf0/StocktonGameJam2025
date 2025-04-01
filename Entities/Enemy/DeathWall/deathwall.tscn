@@ -14,6 +14,7 @@ gradient = SubResource("Gradient_2yn46")
 
 [node name="Deathwall" type="Area2D"]
 z_index = 90
+collision_mask = 3
 script = ExtResource("1_1rbwd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

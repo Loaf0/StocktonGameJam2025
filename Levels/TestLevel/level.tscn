@@ -188,7 +188,7 @@ position = Vector2(347, -14)
 position = Vector2(-204, 44)
 
 [node name="Deathwall" parent="." instance=ExtResource("4_yq830")]
-position = Vector2(2422, -832)
+position = Vector2(-740, -790)
 
 [node name="Foreground" type="TileMapLayer" parent="."]
 position = Vector2(2, 0)

@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
 	for body in hitbox.get_overlapping_bodies():
 		if body.has_method("take_damage") and body.is_in_group("player"):
 			body.take_damage(1)
-	
 	move_and_slide()
 
 func take_damage(damage_taken : int):
