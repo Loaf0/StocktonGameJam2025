@@ -22,6 +22,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite
 @onready var invul_timer = $InvulTimer
 @onready var wall_slide_timer = $WallSlideTimer
+@onready var anim = $AnimationPlayer
 
 var is_running: bool = false
 var on_wall: bool = false
@@ -129,18 +130,25 @@ func player_on_wall():
 func attack():
 	if is_on_floor():
 		# Ground attack animation
-		for body in ground_hitbox.get_overlapping_bodies():
-			if body.has_method("take_damage") and !body.is_in_group("player"):
-				HitStop.freeze_frame(.1)
-				body.take_damage(1)
-		pass
+		anim.play("swing")
 	else:
 		# Air attack animation
-		for body in air_hitbox.get_overlapping_bodies():
-			if body.has_method("take_damage") and !body.is_in_group("player"):
-				HitStop.freeze_frame(.1)
-				body.take_damage(1)
-		pass
+		attack_air()
+		
+
+func attack_ground():
+	for body in ground_hitbox.get_overlapping_bodies():
+		if body.has_method("take_damage") and !body.is_in_group("player"):
+			HitStop.freeze_frame(.1)
+			body.take_damage(1)
+	pass
+
+func attack_air():
+	for body in air_hitbox.get_overlapping_bodies():
+		if body.has_method("take_damage") and !body.is_in_group("player"):
+			HitStop.freeze_frame(.1)
+			body.take_damage(1)
+	pass
 
 func take_damage(damage_taken : int):
 	if invul_timer.is_stopped():

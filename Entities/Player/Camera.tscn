@@ -21,6 +21,7 @@ offset_bottom = -270.0
 
 [node name="Label" type="Label" parent="Control"]
 z_index = 100
+layout_mode = 0
 offset_left = 26.0
 offset_top = 24.0
 offset_right = 183.0
@@ -49,4 +50,5 @@ show_percentage = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-position_smoothing_speed = 100.0
+process_callback = 0
+position_smoothing_enabled = true

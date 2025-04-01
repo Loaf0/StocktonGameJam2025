@@ -178,9 +178,6 @@ sources/2 = SubResource("TileSetAtlasSource_qcy8m")
 [node name="Test Level" type="Node2D"]
 
 [node name="Camera" parent="." instance=ExtResource("1_vrtqf")]
-follow_range = 20.0
-follow_speed = 6.0
-follow_offset = Vector2(20, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_yq830")]
 fast_fall_gravity = 2000.0

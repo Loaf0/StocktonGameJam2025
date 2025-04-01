@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dghjnnwt1a7x2"]
+[gd_scene load_steps=10 format=3 uid="uid://dghjnnwt1a7x2"]
 
 [ext_resource type="Script" uid="uid://bqrxrhfswmnia" path="res://Entities/Player/player.gd" id="1_7fm2q"]
-[ext_resource type="Texture2D" uid="uid://cq8w0ps0dilv2" path="res://Entities/Player/basic_idle.png" id="2_3uyv8"]
+[ext_resource type="Texture2D" uid="uid://d1nk2ioxvap0r" path="res://Entities/Player/Basic Swing.png" id="2_3uyv8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3uyv8"]
 radius = 12.0
@@ -14,6 +14,73 @@ height = 58.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2x6ej"]
 radius = 14.0
 height = 56.0
+
+[sub_resource type="Animation" id="Animation_3uyv8"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_ground"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lu8i8"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tekja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5c2io"]
+_data = {
+&"RESET": SubResource("Animation_tekja"),
+&"idle": SubResource("Animation_lu8i8"),
+&"swing": SubResource("Animation_3uyv8")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -61,4 +128,12 @@ shape = SubResource("CapsuleShape2D_2x6ej")
 debug_color = Color(0.764706, 0.164706, 1, 0.0313726)
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(4, -10)
 texture = ExtResource("2_3uyv8")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5c2io")
+}
+autoplay = "idle"
