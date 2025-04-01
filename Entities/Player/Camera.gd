@@ -7,7 +7,8 @@ var following := false
 @export var follow_speed: float = 6.0
 @export var follow_offset: Vector2 = Vector2(20, 0)
 var target_location: Vector2
-@onready var health_bar = $Healthbar
+@onready var health_bar = $Control/Healthbar
+@onready var score_label = $Control/Label
 
 func _ready() -> void:
 	if !follow_target:
@@ -25,6 +26,8 @@ func _process(delta: float) -> void:
 
 	target_location = follow_target.global_position + follow_offset
 	position = position.lerp(target_location, follow_speed * delta)
+	
+	score_label.text = "Score : " + str(Global.score)
 	
 	if follow_target.has_method("get_health"):
 		health_bar.value = follow_target.get_health()

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0v2x7qq6g32i"]
+
+[ext_resource type="Texture2D" uid="uid://ccjfhbbe3x4qp" path="res://Entities/Coin/doodle-love-letters-png-art-5692916.png" id="1_5j5pc"]
+[ext_resource type="Script" uid="uid://cc41201bmav1o" path="res://Entities/Coin/coin.gd" id="1_oyaeu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oyaeu"]
+radius = 11.0
+height = 24.0
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("1_oyaeu")
+
+[node name="Doodle-love-letters-png-art-5692916" type="Sprite2D" parent="."]
+position = Vector2(-1, 1)
+rotation = -0.188562
+scale = Vector2(0.048078, 0.048078)
+texture = ExtResource("1_5j5pc")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_oyaeu")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

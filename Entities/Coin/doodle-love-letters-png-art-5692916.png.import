@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccjfhbbe3x4qp"
-path="res://.godot/imported/doodle-love-letters-png-art-5692916.png-29590fb1a0463f01831759959bccbee8.ctex"
+path="res://.godot/imported/doodle-love-letters-png-art-5692916.png-b4c3917849cf9867c2228366d7e2af02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main Menu/doodle-love-letters-png-art-5692916.png"
-dest_files=["res://.godot/imported/doodle-love-letters-png-art-5692916.png-29590fb1a0463f01831759959bccbee8.ctex"]
+source_file="res://Entities/Coin/doodle-love-letters-png-art-5692916.png"
+dest_files=["res://.godot/imported/doodle-love-letters-png-art-5692916.png-b4c3917849cf9867c2228366d7e2af02.ctex"]
 
 [params]
 

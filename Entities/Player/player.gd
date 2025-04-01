@@ -7,7 +7,8 @@ extends CharacterBody2D
 @export var max_jump_hold_time: float = 0.2
 @export var gravity: float = 900.0
 @export var fast_fall_gravity: float = 1700.0
-@export var wall_slide_speed: float = 90.0
+@export var wall_slide_speed: float = 5.0
+@export var wall_slide_mod: float = 40.0
 @export var wall_jump_force: Vector2 = Vector2(320, -360)
 @export var acceleration: float = 1500.0
 @export var air_acceleration: float = 750.0
@@ -20,11 +21,12 @@ extends CharacterBody2D
 @onready var air_hitbox = $A_Hitbox
 @onready var sprite = $Sprite
 @onready var invul_timer = $InvulTimer
+@onready var wall_slide_timer = $WallSlideTimer
 
 var is_running: bool = false
 var on_wall: bool = false
 var can_wall_jump: bool = false
-
+var wall_sliding = false
 var jump_time: float = 0.0
 var is_jumping: bool = false
 var direction: int = 1  # 1 for right, -1 for left
@@ -49,31 +51,39 @@ func _physics_process(delta):
 			velocity.y += fast_fall_gravity * delta
 		else:
 			velocity.y += gravity * delta
-
+	
 	on_wall = player_on_wall() and not is_on_floor()
-
-	if on_wall:
-		if velocity.y > 0:
-			velocity.y = move_toward(velocity.y, wall_slide_speed, gravity * delta)
-		if Input.get_axis("Left", "Right") != 0:
-			can_wall_jump = true
-		else:
-			can_wall_jump = false
 
 	if Input.is_action_just_pressed("Jump"):
 		if is_on_floor():
 			velocity.y = -jump_force
 			is_jumping = true
 			jump_time = 0.0
-		elif on_wall and can_wall_jump:
+		elif on_wall:
 			just_wall_jumped = true
 			if left_cast.is_colliding():
 				velocity = Vector2(wall_jump_force.x, wall_jump_force.y)
 			else:
 				velocity = Vector2(-wall_jump_force.x, wall_jump_force.y)
-			
-			can_wall_jump = false
 			is_jumping = false
+
+	if on_wall and not just_wall_jumped:
+		if velocity.y > 0:
+			if (left_cast.is_colliding() and direction_input < 0) or (right_cast.is_colliding() and direction_input > 0):
+				if not wall_sliding:  
+					wall_slide_timer.start()
+					wall_sliding = true
+				var time_ratio = (wall_slide_timer.wait_time - wall_slide_timer.time_left) / wall_slide_timer.wait_time
+				velocity.y = lerp(wall_slide_speed, wall_slide_speed * wall_slide_mod, time_ratio)
+				velocity.y = clamp(velocity.y, wall_slide_speed, wall_slide_speed* wall_slide_mod)
+
+				var side = 1 if left_cast.is_colliding() else -1
+				adjust_direction(side)
+	else:
+		if wall_sliding:
+			wall_sliding = false
+			wall_slide_timer.stop()
+
 
 	if is_jumping:
 		jump_time += delta
@@ -121,12 +131,14 @@ func attack():
 		# Ground attack animation
 		for body in ground_hitbox.get_overlapping_bodies():
 			if body.has_method("take_damage") and !body.is_in_group("player"):
+				HitStop.freeze_frame(.1)
 				body.take_damage(1)
 		pass
 	else:
 		# Air attack animation
 		for body in air_hitbox.get_overlapping_bodies():
 			if body.has_method("take_damage") and !body.is_in_group("player"):
+				HitStop.freeze_frame(.1)
 				body.take_damage(1)
 		pass
 
@@ -139,3 +151,11 @@ func take_damage(damage_taken : int):
 
 func get_health():
 	return health
+
+func adjust_direction(direction):
+	air_hitbox.scale.x = direction
+	ground_hitbox.scale.x = direction
+	if direction > 0:
+		sprite.flip_h = false
+	else:
+		sprite.flip_h = true
