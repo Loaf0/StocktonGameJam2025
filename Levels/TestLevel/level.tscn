@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://cu0m63v7pqbwb"]
+[gd_scene load_steps=10 format=4 uid="uid://cu0m63v7pqbwb"]
 
+[ext_resource type="PackedScene" uid="uid://jb6fumfk082c" path="res://Entities/Player/ui.tscn" id="1_fomdt"]
 [ext_resource type="PackedScene" uid="uid://bgvs4d7hgb1h8" path="res://Entities/Player/Camera.tscn" id="1_vrtqf"]
 [ext_resource type="PackedScene" uid="uid://dghjnnwt1a7x2" path="res://Entities/Player/player.tscn" id="2_yq830"]
 [ext_resource type="PackedScene" uid="uid://cbr5s3p6b4pp4" path="res://Entities/Enemy/Test Enemy/TestEnemy.tscn" id="3_4nrq0"]
@@ -176,6 +177,8 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_qcy8m")
 
 [node name="Test Level" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_fomdt")]
 
 [node name="Camera" parent="." instance=ExtResource("1_vrtqf")]
 

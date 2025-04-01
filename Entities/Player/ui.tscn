@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://jb6fumfk082c"]
+
+[ext_resource type="Script" uid="uid://ddje04ebn6ovs" path="res://ui.gd" id="1_xdotd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0udv"]
+bg_color = Color(0.81, 0, 0.0134998, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dihi"]
+bg_color = Color(0.170617, 0.58, 0.1334, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_xdotd")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Label" parent="Control"]
+z_index = 100
+offset_right = 323.0
+offset_bottom = 184.0
+text = "Score : 0"
+
+[node name="Healthbar" type="ProgressBar" parent="Control"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_right = 150.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_m0udv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2dihi")
+max_value = 3.0
+step = 1.0
+value = 2.0
+rounded = true
+show_percentage = false

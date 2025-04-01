@@ -41,7 +41,10 @@ func _physics_process(delta):
 	var target_speed = (run_speed if is_running else walk_speed) * direction_input
 	var current_acceleration = air_acceleration if not is_on_floor() else acceleration
 	var current_friction = air_friction if not is_on_floor() else friction
-
+	Global.health = health
+	
+	if !anim.is_playing():
+		anim.play("idle")
 	if direction_input:
 		velocity.x = move_toward(velocity.x, target_speed, current_acceleration * delta)
 	else:
@@ -69,7 +72,7 @@ func _physics_process(delta):
 			is_jumping = false
 
 	if on_wall and not just_wall_jumped:
-		if velocity.y > 0:
+		if velocity.y > 50:
 			if (left_cast.is_colliding() and direction_input < 0) or (right_cast.is_colliding() and direction_input > 0):
 				if not wall_sliding:  
 					wall_slide_timer.start()

@@ -1,52 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgvs4d7hgb1h8"]
+[gd_scene load_steps=2 format=3 uid="uid://bgvs4d7hgb1h8"]
 
 [ext_resource type="Script" uid="uid://dt3wi8llap7ex" path="res://Entities/Player/Camera.gd" id="1_e6e23"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j23se"]
-bg_color = Color(0.81, 0, 0.0134998, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b28xg"]
-bg_color = Color(0.170617, 0.58, 0.1334, 1)
-
 [node name="Camera" type="Node2D"]
 script = ExtResource("1_e6e23")
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -480.0
-offset_top = -270.0
-offset_right = -480.0
-offset_bottom = -270.0
-
-[node name="Label" type="Label" parent="Control"]
-z_index = 100
-layout_mode = 0
-offset_left = 26.0
-offset_top = 24.0
-offset_right = 183.0
-offset_bottom = 68.0
-text = "Score : 0"
-
-[node name="Healthbar" type="ProgressBar" parent="Control"]
-z_index = 100
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 26.0
-offset_top = 459.0
-offset_right = 186.0
-offset_bottom = 494.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_j23se")
-theme_override_styles/fill = SubResource("StyleBoxFlat_b28xg")
-max_value = 3.0
-step = 1.0
-value = 2.0
-rounded = true
-show_percentage = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
