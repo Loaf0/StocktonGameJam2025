@@ -43,8 +43,6 @@ func _physics_process(delta):
 	var current_friction = air_friction if not is_on_floor() else friction
 	Global.health = health
 	
-	if !anim.is_playing():
-		anim.play("idle")
 	if direction_input:
 		velocity.x = move_toward(velocity.x, target_speed, current_acceleration * delta)
 	else:
@@ -108,6 +106,7 @@ func _physics_process(delta):
 			sprite.flip_h = false
 		else:
 			sprite.flip_h = true
+
 	
 	if just_wall_jumped:
 		if left_cast.is_colliding() and sprite.flip_h:
@@ -126,6 +125,16 @@ func _physics_process(delta):
 		sprite.modulate = Color(1, 1, 1, 1)
 	
 	move_and_slide()
+	
+	if is_on_floor():
+		if abs(velocity.x) > .01 and !anim.is_playing():
+			anim.play("running")
+		if abs(velocity.x) <= .01  and anim.current_animation == "running":
+			anim.play("RESET")
+	else:
+		if !anim.is_playing() or anim.current_animation == "running":
+			anim.play("Jump")
+
 
 func player_on_wall():
 	return left_cast.is_colliding() or right_cast.is_colliding()

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbr5s3p6b4pp4"]
+[gd_scene load_steps=6 format=3 uid="uid://n1tb4tcmncyb"]
 
-[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Test Enemy/test_enemy.gd" id="1_0v3n6"]
-[ext_resource type="Texture2D" uid="uid://btenhfnvcmhsj" path="res://Entities/Enemy/Quadtopus/Idle.png" id="2_ik4k5"]
+[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Test Enemy/test_enemy.gd" id="1_rv81n"]
+[ext_resource type="Texture2D" uid="uid://btenhfnvcmhsj" path="res://Entities/Enemy/Quadtopus/Idle.png" id="2_3w6rw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik4k5"]
 radius = 18.0
@@ -15,7 +15,7 @@ size = Vector2(68, 15)
 
 [node name="Quadtopus" type="CharacterBody2D"]
 collision_layer = 4
-script = ExtResource("1_0v3n6")
+script = ExtResource("1_rv81n")
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -48,4 +48,4 @@ target_position = Vector2(0, 24)
 
 [node name="Image2025-03-30164258789-removebg-preview" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
-texture = ExtResource("2_ik4k5")
+texture = ExtResource("2_3w6rw")
