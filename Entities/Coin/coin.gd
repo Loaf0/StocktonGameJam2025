@@ -10,5 +10,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	Global.score += 100
-	queue_free()
+	if body.is_in_group("player"):
+		body.health = body.health + 1 if body.health < 3 else body.health
+		Global.score += 100
+		queue_free()
