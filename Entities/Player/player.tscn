@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dghjnnwt1a7x2"]
+[gd_scene load_steps=13 format=3 uid="uid://dghjnnwt1a7x2"]
 
 [ext_resource type="Script" uid="uid://bqrxrhfswmnia" path="res://Entities/Player/player.gd" id="1_7fm2q"]
 [ext_resource type="Texture2D" uid="uid://t3t6c1vwbx52" path="res://Entities/Player/player.png" id="2_3uyv8"]
@@ -14,6 +14,22 @@ height = 58.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2x6ej"]
 radius = 14.0
 height = 56.0
+
+[sub_resource type="Animation" id="Animation_4wf4l"]
+resource_name = "Jump"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
 
 [sub_resource type="Animation" id="Animation_tekja"]
 length = 0.001
@@ -43,6 +59,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5c2io"]
+resource_name = "running"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
 }
 
 [sub_resource type="Animation" id="Animation_3uyv8"]
@@ -75,39 +108,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_5c2io"]
-resource_name = "running"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.35, 0.55),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_4wf4l"]
-resource_name = "Jump"
-length = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5c2io"]
 _data = {
 &"Jump": SubResource("Animation_4wf4l"),
@@ -117,8 +117,12 @@ _data = {
 &"swing": SubResource("Animation_3uyv8")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lu8i8"]
+radius = 12.0
+height = 54.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 2
+collision_layer = 10
 script = ExtResource("1_7fm2q")
 walk_speed = 200.0
 run_speed = 300.0
@@ -173,3 +177,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_5c2io")
 }
 autoplay = "RESET"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_lu8i8")
