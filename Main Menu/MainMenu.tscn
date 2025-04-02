@@ -31,15 +31,16 @@ offset_left = 1.0
 offset_top = -3.0
 offset_right = 1153.0
 offset_bottom = 649.0
+scale = Vector2(1.65928, 1.65928)
 texture = ExtResource("2_2gs5d")
 
 [node name="Car" type="TextureRect" parent="StartScreen"]
 layout_mode = 0
-offset_left = 247.0
-offset_top = 331.0
-offset_right = 913.0
-offset_bottom = 706.0
-scale = Vector2(0.615, 0.615)
+offset_left = 393.0
+offset_top = 709.0
+offset_right = 1059.0
+offset_bottom = 1084.0
+scale = Vector2(1.02046, 1.02046)
 pivot_offset = Vector2(176, 168)
 texture = ExtResource("4_n72od")
 
@@ -50,13 +51,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 836.0
-offset_top = 448.0
-offset_right = 1020.0
-offset_bottom = 555.0
+offset_left = 1364.0
+offset_top = 714.0
+offset_right = 1548.0
+offset_bottom = 821.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2.48892, 2.48892)
 
 [node name="Start" type="Button" parent="StartScreen/VBoxContainer"]
 layout_mode = 2
@@ -76,8 +77,8 @@ offset_left = 18.0
 offset_top = 19.0
 offset_right = 158.0
 offset_bottom = 48.0
-scale = Vector2(3.29, 3.29)
-text = "Black Magic GPS"
+scale = Vector2(5.45902, 5.45902)
+text = "Warp Route"
 
 [node name="LevelSelect" type="Control" parent="."]
 visible = false
@@ -91,22 +92,24 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(3.33698, 2.347)
+scale = Vector2(5.56217, 3.91204)
 texture = ExtResource("5_n72od")
 
 [node name="Level Select Exit" type="Button" parent="LevelSelect"]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 99.0
+scale = Vector2(1.66683, 1.66683)
 theme_override_font_sizes/font_size = 66
 text = "Back"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect"]
 layout_mode = 0
 offset_left = 31.0
-offset_top = 150.0
+offset_top = 262.0
 offset_right = 1138.0
-offset_bottom = 276.0
+offset_bottom = 388.0
+scale = Vector2(1.66683, 1.66683)
 theme_override_constants/separation = 111
 
 [node name="Level 1" type="Button" parent="LevelSelect/HBoxContainer"]

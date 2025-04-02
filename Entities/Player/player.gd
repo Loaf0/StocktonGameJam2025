@@ -42,7 +42,10 @@ func _physics_process(delta):
 	var target_speed = (run_speed if is_running else walk_speed) * direction_input
 	var current_acceleration = air_acceleration if not is_on_floor() else acceleration
 	var current_friction = air_friction if not is_on_floor() else friction
+	
 	Global.health = health
+	if health <= 0:
+		get_tree().reload_current_scene()
 	
 	if attacking:
 		direction_input = 0

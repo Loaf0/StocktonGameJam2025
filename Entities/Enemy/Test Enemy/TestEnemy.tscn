@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cbr5s3p6b4pp4"]
 
 [ext_resource type="Script" uid="uid://c465oer1g44fq" path="res://Entities/Enemy/Test Enemy/BasicEnemy.gd" id="1_oie2v"]
-[ext_resource type="Texture2D" uid="uid://br2dntco8abux" path="res://Entities/Enemy/Quadratopus/Quadratopus.png" id="2_ik4k5"]
+[ext_resource type="Texture2D" uid="uid://df556fuiqyifc" path="res://Entities/Enemy/Test Enemy/image_2025-03-30_164258789-removebg-preview.png" id="2_oie2v"]
 [ext_resource type="PackedScene" uid="uid://c261fm1rqyjsa" path="res://Entities/Enemy/Quadratopus/death_particles.tscn" id="3_truqn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik4k5"]
@@ -41,10 +41,8 @@ position = Vector2(-12, 0)
 target_position = Vector2(0, 24)
 
 [node name="Quadtopus" type="Sprite2D" parent="."]
-position = Vector2(6.60353e-06, 8.48643)
-rotation = 3.14159
-scale = Vector2(0.325, 0.938065)
-texture = ExtResource("2_ik4k5")
-hframes = 2
+position = Vector2(0, 5)
+scale = Vector2(0.045, 0.0659948)
+texture = ExtResource("2_oie2v")
 
 [node name="DeathParticles" parent="." instance=ExtResource("3_truqn")]
