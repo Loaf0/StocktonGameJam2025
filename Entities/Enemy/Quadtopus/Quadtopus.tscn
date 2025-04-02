@@ -1,32 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://n1tb4tcmncyb"]
+[gd_scene load_steps=8 format=3 uid="uid://n1tb4tcmncyb"]
 
 [ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Quadtopus/Quadtopus.gd" id="1_rv81n"]
 [ext_resource type="Texture2D" uid="uid://br2dntco8abux" path="res://Entities/Enemy/Quadtopus/Quadtopus.png" id="2_j6e5w"]
-[ext_resource type="Gradient" uid="uid://dpex27pup6fbc" path="res://Entities/Enemy/Quadtopus/Particles.tres" id="3_aftgh"]
+[ext_resource type="PackedScene" uid="uid://c261fm1rqyjsa" path="res://Entities/Enemy/Quadtopus/death_particles.tscn" id="3_aftgh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik4k5"]
 radius = 18.0
 height = 66.0
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_cl38d"]
-gradient = ExtResource("3_aftgh")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dregg"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(5, 5, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-spread = 180.0
-initial_velocity_max = 74.71
-gravity = Vector3(0, 100, 0)
-color_initial_ramp = SubResource("GradientTexture1D_cl38d")
-collision_use_scale = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oie2v"]
 size = Vector2(23, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_truqn"]
 size = Vector2(68, 15)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_aftgh"]
 
 [node name="Quadtopus" type="CharacterBody2D"]
 z_index = 10
@@ -41,15 +29,6 @@ collision_mask = 2
 position = Vector2(0, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ik4k5")
-
-[node name="DeathParticles" type="GPUParticles2D" parent="."]
-position = Vector2(0, -1)
-emitting = false
-amount = 50
-one_shot = true
-explosiveness = 1.0
-visibility_rect = Rect2(-25, -25, 50, 50)
-process_material = SubResource("ParticleProcessMaterial_dregg")
 
 [node name="JumpTimer" type="Timer" parent="."]
 one_shot = true
@@ -78,3 +57,8 @@ target_position = Vector2(0, 30)
 position = Vector2(0, -2)
 texture = ExtResource("2_j6e5w")
 hframes = 2
+
+[node name="DeathParticles" parent="." instance=ExtResource("3_aftgh")]
+z_index = 11
+amount = 60
+texture = SubResource("CanvasTexture_aftgh")

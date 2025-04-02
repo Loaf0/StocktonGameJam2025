@@ -51,14 +51,12 @@ func _physics_process(delta: float) -> void:
 				elif is_on_wall():
 					direction = -direction
 					turn_timer.start()
-					
 		states.JUMPING:
 			if not jumped:
 				jumped = true
 				target_direction = player.global_position - global_position
 				direction = 1 if target_direction.x > 0 else -1  
 				sprite.flip_h = direction == 1  
-
 				var target_x = player.global_position.x
 				var time_to_land = 2 * sqrt(2 * GRAVITY * JUMP_HEIGHT) / GRAVITY
 				velocity.x = (target_x - global_position.x) / time_to_land
@@ -81,6 +79,7 @@ func take_damage(damage_taken : int):
 
 func death():
 	current_state = states.IDLE
+	sprite.hide()
 	death_emit.emitting = true  
 	sprite.rotation += 0.1 * direction
 	var death_timer = Timer.new()
