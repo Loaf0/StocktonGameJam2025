@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://jkbuttoggkl4"]
+
+[ext_resource type="Script" uid="uid://mfgx7vwwn5d7" path="res://Entities/Objects/DamagingZone/damaging_zone.gd" id="1_eh2pv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g4l3"]
+
+[node name="DamagingZone" type="Area2D"]
+collision_layer = 0
+collision_mask = 13
+script = ExtResource("1_eh2pv")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0g4l3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

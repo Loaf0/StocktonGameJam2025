@@ -18,11 +18,13 @@ func _process(delta):
 
 	var target_position = end_position if moving_to_end else start_position
 	var direction = (target_position - platform.position).normalized()
-	platform.position += direction * speed * delta
+	var movement = direction * speed * delta
 
-	if platform.position.distance_to(target_position) < 1.0:
+	if movement.length() >= platform.position.distance_to(target_position):
 		platform.position = target_position
 		moving_to_end = !moving_to_end
 		waiting = true
 		await get_tree().create_timer(wait_time).timeout
 		waiting = false
+	else:
+		platform.position += movement
