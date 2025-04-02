@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cu0m63v7pqbwb"]
+[gd_scene load_steps=12 format=4 uid="uid://cu0m63v7pqbwb"]
 
 [ext_resource type="PackedScene" uid="uid://jb6fumfk082c" path="res://Entities/Player/ui.tscn" id="1_fomdt"]
 [ext_resource type="Texture2D" uid="uid://damdy86phkwwe" path="res://Environment/Backgrounds/Crappy Forrest.png" id="1_qtvce"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://jlk8vyiifylw" path="res://Entities/Enemy/DeathWall/deathwall.tscn" id="4_yq830"]
 [ext_resource type="Texture2D" uid="uid://033nrrbckejj" path="res://Environment/Foreground Tiles/purplegrass.png" id="5_4nrq0"]
 [ext_resource type="PackedScene" uid="uid://b0v2x7qq6g32i" path="res://Entities/Coin/Coin.tscn" id="6_qcy8m"]
+[ext_resource type="PackedScene" uid="uid://n1tb4tcmncyb" path="res://Entities/Enemy/Quadtopus/Quadtopus.tscn" id="9_u238e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qcy8m"]
 texture = ExtResource("5_4nrq0")
@@ -206,7 +207,7 @@ position = Vector2(0, -1)
 fast_fall_gravity = 2000.0
 
 [node name="TestEnemy2" parent="." instance=ExtResource("3_4nrq0")]
-position = Vector2(347, -14)
+position = Vector2(427, -16)
 
 [node name="TestEnemy" parent="." instance=ExtResource("3_4nrq0")]
 position = Vector2(-204, 44)
@@ -224,3 +225,6 @@ position = Vector2(246, -30)
 
 [node name="Coin2" parent="." instance=ExtResource("6_qcy8m")]
 position = Vector2(171, 21)
+
+[node name="Quadtopus" parent="." instance=ExtResource("9_u238e")]
+position = Vector2(1365, -117)
