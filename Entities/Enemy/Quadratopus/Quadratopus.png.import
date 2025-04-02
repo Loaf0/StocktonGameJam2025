@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btenhfnvcmhsj"
-path="res://.godot/imported/Idle.png-0f8bab4fa50fb404e6b30ff562fdec18.ctex"
+uid="uid://br2dntco8abux"
+path="res://.godot/imported/Quadratopus.png-3fda163b264bf6b21ec1456934dacc7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Enemy/Quadtopus/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-0f8bab4fa50fb404e6b30ff562fdec18.ctex"]
+source_file="res://Entities/Enemy/Quadratopus/Quadratopus.png"
+dest_files=["res://.godot/imported/Quadratopus.png-3fda163b264bf6b21ec1456934dacc7c.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://n1tb4tcmncyb"]
 
-[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Quadtopus/Quadtopus.gd" id="1_rv81n"]
-[ext_resource type="Texture2D" uid="uid://br2dntco8abux" path="res://Entities/Enemy/Quadtopus/Quadtopus.png" id="2_j6e5w"]
-[ext_resource type="PackedScene" uid="uid://c261fm1rqyjsa" path="res://Entities/Enemy/Quadtopus/death_particles.tscn" id="3_aftgh"]
+[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Quadratopus/Quadratopus.gd" id="1_rv81n"]
+[ext_resource type="Texture2D" uid="uid://br2dntco8abux" path="res://Entities/Enemy/Quadratopus/Quadratopus.png" id="2_j6e5w"]
+[ext_resource type="PackedScene" uid="uid://c261fm1rqyjsa" path="res://Entities/Enemy/Quadratopus/death_particles.tscn" id="3_aftgh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik4k5"]
 radius = 18.0

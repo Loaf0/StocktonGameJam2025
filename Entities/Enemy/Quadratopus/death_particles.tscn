@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c261fm1rqyjsa"]
 
-[ext_resource type="Gradient" uid="uid://dpex27pup6fbc" path="res://Entities/Enemy/Quadtopus/Particles.tres" id="1_j2vhf"]
+[ext_resource type="Gradient" uid="uid://dpex27pup6fbc" path="res://Entities/Enemy/Quadratopus/Particles.tres" id="1_j2vhf"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_cl38d"]
 gradient = ExtResource("1_j2vhf")

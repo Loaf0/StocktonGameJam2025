@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://jlk8vyiifylw" path="res://Entities/Enemy/DeathWall/deathwall.tscn" id="4_yq830"]
 [ext_resource type="Texture2D" uid="uid://033nrrbckejj" path="res://Environment/Foreground Tiles/purplegrass.png" id="5_4nrq0"]
 [ext_resource type="PackedScene" uid="uid://b0v2x7qq6g32i" path="res://Entities/Coin/Coin.tscn" id="6_qcy8m"]
-[ext_resource type="PackedScene" uid="uid://n1tb4tcmncyb" path="res://Entities/Enemy/Quadtopus/Quadtopus.tscn" id="9_u238e"]
+[ext_resource type="PackedScene" uid="uid://n1tb4tcmncyb" path="res://Entities/Enemy/Quadratopus/Quadratopus.tscn" id="9_u238e"]
 [ext_resource type="PackedScene" uid="uid://bmjtvw81i21mw" path="res://Entities/Objects/MovingPlatform/moving_platform.tscn" id="10_3ycop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qcy8m"]
