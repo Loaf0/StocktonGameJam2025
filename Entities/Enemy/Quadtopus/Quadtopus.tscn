@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://n1tb4tcmncyb"]
 
-[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Test Enemy/test_enemy.gd" id="1_rv81n"]
-[ext_resource type="Texture2D" uid="uid://btenhfnvcmhsj" path="res://Entities/Enemy/Quadtopus/Idle.png" id="2_3w6rw"]
+[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Quadtopus/Quadtopus.gd" id="1_rv81n"]
+[ext_resource type="Texture2D" uid="uid://br2dntco8abux" path="res://Entities/Enemy/Quadtopus/Quadtopus.png" id="2_j6e5w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik4k5"]
 radius = 18.0
@@ -27,7 +27,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ik4k5")
 
 [node name="TurnTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.3
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,13 +39,14 @@ position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_truqn")
 
 [node name="RightFloorCast" type="RayCast2D" parent="."]
-position = Vector2(19, 0)
-target_position = Vector2(0, 24)
+position = Vector2(33, 0)
+target_position = Vector2(0, 30)
 
 [node name="LeftFloorCast" type="RayCast2D" parent="."]
-position = Vector2(-19, 0)
-target_position = Vector2(0, 24)
+position = Vector2(-33, 0)
+target_position = Vector2(0, 30)
 
-[node name="Image2025-03-30164258789-removebg-preview" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
-texture = ExtResource("2_3w6rw")
+[node name="Quadtopus" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_j6e5w")
+hframes = 2

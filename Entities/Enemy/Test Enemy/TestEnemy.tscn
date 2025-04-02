@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cbr5s3p6b4pp4"]
 
-[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Test Enemy/test_enemy.gd" id="1_0v3n6"]
+[ext_resource type="Script" uid="uid://c48daqvqi41cv" path="res://Entities/Enemy/Quadtopus/Quadtopus.gd" id="1_0v3n6"]
 [ext_resource type="Texture2D" uid="uid://br2dntco8abux" path="res://Entities/Enemy/Quadtopus/Quadtopus.png" id="2_ik4k5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik4k5"]
@@ -29,6 +29,9 @@ position = Vector2(0, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ik4k5")
 
+[node name="JumpTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="TurnTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
@@ -49,16 +52,17 @@ target_position = Vector2(0, 24)
 position = Vector2(-19, 0)
 target_position = Vector2(0, 24)
 
-[node name="Dectection Box" type="Area2D" parent="."]
+[node name="Detection Box" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dectection Box"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Box"]
 shape = SubResource("CircleShape2D_ik4k5")
 
-[node name="Image2025-03-30164258789-removebg-preview" type="Sprite2D" parent="."]
+[node name="Quadtopus" type="Sprite2D" parent="."]
 position = Vector2(0, -5)
 texture = ExtResource("2_ik4k5")
 hframes = 2
 
-[connection signal="area_entered" from="Dectection Box" to="." method="_on_dectection_box_area_entered"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="body_entered" from="Detection Box" to="." method="_on_detection_box_body_entered"]

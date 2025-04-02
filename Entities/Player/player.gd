@@ -32,6 +32,7 @@ var jump_time: float = 0.0
 var is_jumping: bool = false
 var direction: int = 1  # 1 for right, -1 for left
 var just_wall_jumped: bool = false
+var attacking = false
 
 var health = 3
 
@@ -43,12 +44,21 @@ func _physics_process(delta):
 	var current_friction = air_friction if not is_on_floor() else friction
 	Global.health = health
 	
+	if attacking:
+		direction_input = 0
+		#velocity.x = move_toward(velocity.x, 0, current_friction * delta)
+
+
 	if direction_input:
+		anim.play("running")
 		velocity.x = move_toward(velocity.x, target_speed, current_acceleration * delta)
 	else:
+		if !attacking:
+			anim.play("idle")
 		velocity.x = move_toward(velocity.x, 0, current_friction * delta)
 
 	if not is_on_floor():
+		anim.play("Jump")
 		if velocity.y > 0:
 			velocity.y += fast_fall_gravity * delta
 		else:
@@ -85,7 +95,6 @@ func _physics_process(delta):
 		if wall_sliding:
 			wall_sliding = false
 			wall_slide_timer.stop()
-
 
 	if is_jumping:
 		jump_time += delta
@@ -125,15 +134,6 @@ func _physics_process(delta):
 		sprite.modulate = Color(1, 1, 1, 1)
 	
 	move_and_slide()
-	
-	if is_on_floor():
-		if abs(velocity.x) > .01 and !anim.is_playing():
-			anim.play("running")
-		if abs(velocity.x) <= .01  and anim.current_animation == "running":
-			anim.play("RESET")
-	else:
-		if !anim.is_playing() or anim.current_animation == "running":
-			anim.play("Jump")
 
 
 func player_on_wall():
@@ -141,6 +141,7 @@ func player_on_wall():
 
 func attack():
 	if is_on_floor():
+		attacking = true
 		# Ground attack animation
 		anim.play("swing")
 	else:
@@ -179,3 +180,8 @@ func adjust_direction(direction):
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "swing":
+		attacking = false

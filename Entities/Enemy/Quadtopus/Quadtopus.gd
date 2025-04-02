@@ -2,14 +2,16 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const GRAVITY = 900.0
-const JUMPSPEED = 500.0
+const JUMP_SPEED = 500.0
+const JUMP_HEIGHT = 150.0
 
 @onready var right_floor_cast = $RightFloorCast
 @onready var left_floor_cast = $LeftFloorCast
 @onready var turn_timer = $TurnTimer
+@onready var jump_timer = $JumpTimer
 @onready var hitbox = $hitbox
-@onready var sprite = $"Image2025-03-30164258789-removebg-preview"
-@onready var detect = $"Dectection Box"
+@onready var sprite = $Quadtopus
+@onready var detect = $"Detection Box"
 
 enum states {
 	MOVING,
@@ -26,10 +28,10 @@ var jumped = false
 var player = null
 var target_direction = Vector2.ZERO
 
-
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
+	
 	match current_state:
 		states.MOVING:
 			sprite.frame = 0
@@ -46,18 +48,23 @@ func _physics_process(delta: float) -> void:
 					turn_timer.start()
 					
 		states.JUMPING:
-			if jumped == false:
+			if not jumped:
 				jumped = true
 				target_direction = player.global_position - global_position
-				velocity.x = target_direction.x*JUMPSPEED / 600
-				velocity.y = -JUMPSPEED
+				direction = 1 if target_direction.x > 0 else -1  
+				sprite.flip_h = direction == 1  
+
+				var target_x = player.global_position.x
+				var time_to_land = 2 * sqrt(2 * GRAVITY * JUMP_HEIGHT) / GRAVITY
+				velocity.x = (target_x - global_position.x) / time_to_land
+				velocity.y = -sqrt(2 * GRAVITY * JUMP_HEIGHT)
+
 				sprite.frame = 1
 			elif is_on_floor():
 				jumped = false
 				current_state = states.MOVING
-			
-	
-		 
+
+
 	if health <= 0:
 		death()
 	
@@ -74,7 +81,11 @@ func take_damage(damage_taken : int):
 func death():
 	queue_free()
 
+func _on_jump_timer_timeout() -> void:
+	if player and detect.has_overlapping_bodies():
+		current_state = states.JUMPING
+	jump_timer.start(randf_range(1.0, 4.0))
 
-func _on_dectection_box_area_entered(area: Area2D) -> void:
+func _on_detection_box_body_entered(body: Node2D) -> void:
 	current_state = states.JUMPING
-	player = area
+	player = body
