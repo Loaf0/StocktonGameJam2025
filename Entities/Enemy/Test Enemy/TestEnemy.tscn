@@ -64,5 +64,7 @@ position = Vector2(0, -5)
 texture = ExtResource("2_ik4k5")
 hframes = 2
 
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
 [connection signal="body_entered" from="Detection Box" to="." method="_on_detection_box_body_entered"]
