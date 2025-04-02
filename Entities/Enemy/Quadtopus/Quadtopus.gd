@@ -12,6 +12,7 @@ const JUMP_HEIGHT = 150.0
 @onready var hitbox = $hitbox
 @onready var sprite = $Quadtopus
 @onready var detect = $"Detection Box"
+@onready var death_emit = $DeathParticles
 
 enum states {
 	MOVING,
@@ -31,6 +32,10 @@ var target_direction = Vector2.ZERO
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
+	
+	if health <= 0:
+		death()
+		return
 	
 	match current_state:
 		states.MOVING:
@@ -63,10 +68,6 @@ func _physics_process(delta: float) -> void:
 			elif is_on_floor():
 				jumped = false
 				current_state = states.MOVING
-
-
-	if health <= 0:
-		death()
 	
 	for body in hitbox.get_overlapping_bodies():
 		if body.has_method("take_damage") and body.is_in_group("player"):
@@ -79,7 +80,15 @@ func take_damage(damage_taken : int):
 	health = health - damage_taken
 
 func death():
-	queue_free()
+	current_state = states.IDLE
+	death_emit.emitting = true  
+	sprite.rotation += 0.1 * direction
+	var death_timer = Timer.new()
+	add_child(death_timer)
+	death_timer.wait_time = 1.5  
+	death_timer.one_shot = true
+	death_timer.connect("timeout", Callable(self, "queue_free"))
+	death_timer.start()
 
 func _on_jump_timer_timeout() -> void:
 	if player and detect.has_overlapping_bodies():

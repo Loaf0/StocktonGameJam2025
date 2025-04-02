@@ -46,8 +46,6 @@ func _physics_process(delta):
 	
 	if attacking:
 		direction_input = 0
-		#velocity.x = move_toward(velocity.x, 0, current_friction * delta)
-
 
 	if direction_input:
 		anim.play("running")
@@ -58,7 +56,8 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, current_friction * delta)
 
 	if not is_on_floor():
-		anim.play("Jump")
+		if anim.current_animation != "swing":
+			anim.play("Jump")
 		if velocity.y > 0:
 			velocity.y += fast_fall_gravity * delta
 		else:
@@ -180,7 +179,6 @@ func adjust_direction(direction):
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "swing":
