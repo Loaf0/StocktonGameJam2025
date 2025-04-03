@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpleojmnin7cf"]
+[gd_scene load_steps=4 format=3 uid="uid://bpleojmnin7cf"]
 
 [ext_resource type="Script" uid="uid://yqk3op0wjibi" path="res://Entities/Enemy/Bats/bat_spawner.gd" id="1_2y65o"]
+[ext_resource type="Texture2D" uid="uid://df556fuiqyifc" path="res://Entities/Enemy/Test Enemy/image_2025-03-30_164258789-removebg-preview.png" id="2_ogx7l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbqu3"]
 radius = 866.305
 
 [node name="BatSpawner" type="Node2D"]
 script = ExtResource("1_2y65o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_ogx7l")
 
 [node name="SpawnRange" type="Area2D" parent="."]
 collision_layer = 0

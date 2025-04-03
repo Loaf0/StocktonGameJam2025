@@ -10,7 +10,7 @@ extends CharacterBody2D
 var health = 1
 
 func _physics_process(delta: float) -> void:
-	velocity.y = sin(global_position.x * flight_frequency) * flight_magnatude
+	velocity.y = -sin(global_position.x * flight_frequency) * flight_magnatude
 	velocity.x = flight_speed
 	move_and_slide()
 	pass

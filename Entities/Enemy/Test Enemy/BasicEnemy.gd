@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	
 	match current_state:
 		states.DEATH:
-			sprite.frame = 1
+			sprite.frame = 0
 			if !dying:
 				death()
 		states.MOVING:

@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8xq5cenfamvp"]
+
+[ext_resource type="Script" uid="uid://cda2qfo37texu" path="res://Entities/WinZone/winzone.gd" id="1_vmjyl"]
+[ext_resource type="Texture2D" uid="uid://bwa2s2iacp513" path="res://Main Menu/Car.png" id="2_l3d2x"]
+[ext_resource type="Texture2D" uid="uid://bqdb6ljik5yda" path="res://Entities/WinZone/smoke3.png" id="3_l3d2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkppc"]
+size = Vector2(115, 167.5)
+
+[sub_resource type="Curve" id="Curve_dkppc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50365, 0.772358), -0.386125, -0.386125, 0, 0, Vector2(0.682482, 0.654472), -1.14238, -1.14238, 0, 0, Vector2(1, 0.154472), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_l3d2x"]
+curve = SubResource("Curve_dkppc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rkw5d"]
+particle_flag_disable_z = true
+angle_min = -153.1
+angle_max = 144.8
+direction = Vector3(2, 0, 0)
+spread = 180.0
+initial_velocity_max = 8.0
+gravity = Vector3(-30, 0, 0)
+linear_accel_min = -20.0
+linear_accel_max = -2.23517e-06
+scale_min = 0.0
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_l3d2x")
+
+[sub_resource type="Animation" id="Animation_vmjyl"]
+resource_name = "win"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, -4), Vector2(300, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_l3d2x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, -4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l3d2x"]
+_data = {
+&"RESET": SubResource("Animation_l3d2x"),
+&"win": SubResource("Animation_vmjyl")
+}
+
+[node name="Winzone" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vmjyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, -13.25)
+shape = SubResource("RectangleShape2D_dkppc")
+
+[node name="Car" type="Sprite2D" parent="."]
+position = Vector2(4, -4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_l3d2x")
+
+[node name="Smoke" type="GPUParticles2D" parent="Car"]
+position = Vector2(-260, 100)
+scale = Vector2(5, 5)
+emitting = false
+texture = ExtResource("3_l3d2x")
+lifetime = 1.5
+explosiveness = 0.2
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_rkw5d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_l3d2x")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
