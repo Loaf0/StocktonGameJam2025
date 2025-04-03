@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://cbr5s3p6b4pp4"]
 
-[ext_resource type="Script" path="res://Entities/Enemy/Test Enemy/BasicEnemy.gd" id="1_oie2v"]
-[ext_resource type="Texture2D" uid="uid://df556fuiqyifc" path="res://Entities/Enemy/Test Enemy/image_2025-03-30_164258789-removebg-preview.png" id="2_oie2v"]
+[ext_resource type="Script" uid="uid://c465oer1g44fq" path="res://Entities/Enemy/Test Enemy/BasicEnemy.gd" id="1_oie2v"]
+[ext_resource type="Texture2D" uid="uid://iwv13j585f35" path="res://Entities/Enemy/Duotupos/bounce.png" id="2_oie2v"]
 [ext_resource type="PackedScene" uid="uid://c261fm1rqyjsa" path="res://Entities/Enemy/Quadratopus/death_particles.tscn" id="3_truqn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik4k5"]
-radius = 17.0
-height = 34.0
+radius = 15.0
+height = 44.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oie2v"]
-size = Vector2(23, 30.5)
+size = Vector2(27, 34)
 
 [node name="TestEnemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -20,8 +20,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 1)
-rotation = 1.5708
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_ik4k5")
 
 [node name="TurnTimer" type="Timer" parent="."]
@@ -29,20 +28,19 @@ wait_time = 0.05
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.75)
+position = Vector2(0.5, 6)
 shape = SubResource("RectangleShape2D_oie2v")
 
+[node name="Quadtopus" type="Sprite2D" parent="."]
+texture = ExtResource("2_oie2v")
+hframes = 2
+
 [node name="RightFloorCast" type="RayCast2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(11, 0)
 target_position = Vector2(0, 24)
 
 [node name="LeftFloorCast" type="RayCast2D" parent="."]
-position = Vector2(-12, 0)
+position = Vector2(-9, 0)
 target_position = Vector2(0, 24)
-
-[node name="Quadtopus" type="Sprite2D" parent="."]
-position = Vector2(0, 5)
-scale = Vector2(0.045, 0.0659948)
-texture = ExtResource("2_oie2v")
 
 [node name="DeathParticles" parent="." instance=ExtResource("3_truqn")]

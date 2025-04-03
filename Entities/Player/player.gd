@@ -175,6 +175,7 @@ func attack_air():
 func take_damage(damage_taken : int):
 	if invul_timer.is_stopped():
 		print(health)
+		MusicPlayer.play_FX(damage_sound)
 		health = health - damage_taken
 		invul_timer.start()
 		print(health)

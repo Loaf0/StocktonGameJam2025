@@ -202,6 +202,18 @@ texture_repeat = 2
 position = Vector2(960, 0)
 texture = ExtResource("1_qtvce")
 
+[node name="CrappyForrest3" type="Sprite2D" parent="CrappyForrest"]
+z_index = -15
+texture_repeat = 2
+position = Vector2(1920, 0)
+texture = ExtResource("1_qtvce")
+
+[node name="CrappyForrest4" type="Sprite2D" parent="CrappyForrest"]
+z_index = -15
+texture_repeat = 2
+position = Vector2(2880, 0)
+texture = ExtResource("1_qtvce")
+
 [node name="UI" parent="." instance=ExtResource("1_fomdt")]
 
 [node name="Camera" parent="." instance=ExtResource("1_vrtqf")]
@@ -224,14 +236,17 @@ flight_frequency = 0.03
 flight_speed = -100
 spawn_frequency = 3.0
 
+[node name="Sprite2D" parent="Entities/Enemies/BatSpawner" index="0"]
+position = Vector2(0, 18)
+
 [node name="CollisionShape2D" parent="Entities/Enemies/BatSpawner/SpawnRange" index="0"]
-position = Vector2(-606, 0)
+position = Vector2(-604, 21)
 
 [node name="Deathwall" parent="Entities/Enemies" instance=ExtResource("4_yq830")]
 position = Vector2(-1502, -486)
 scale = Vector2(1.34558, 2.00341)
-max_speed = 100
-min_speed = 60
+max_speed = 120
+min_speed = 80
 
 [node name="TestEnemy2" parent="Entities/Enemies" instance=ExtResource("3_4nrq0")]
 position = Vector2(427, -16)
@@ -266,7 +281,7 @@ position = Vector2(3121, -629)
 
 [node name="Moving Platform" parent="Entities/MovingPlatforms" instance=ExtResource("10_3ycop")]
 position = Vector2(2299, -242)
-speed = 400.0
+speed = 200.0
 x_distance = 300.0
 
 [node name="DeathBoxes" type="Node2D" parent="Entities"]
@@ -276,7 +291,17 @@ position = Vector2(2551, 488)
 scale = Vector2(33.9817, 33.9817)
 damage = 8572
 
+[node name="DeathPit2" parent="Entities/DeathBoxes" instance=ExtResource("11_81cul")]
+position = Vector2(4325, 29)
+scale = Vector2(33.9817, 33.9817)
+damage = 8572
+
+[node name="DeathPit3" parent="Entities/DeathBoxes" instance=ExtResource("11_81cul")]
+position = Vector2(4736, -34)
+scale = Vector2(33.9817, 33.9817)
+damage = 8572
+
 [node name="Winzone" parent="." instance=ExtResource("13_bajg8")]
-position = Vector2(6191, -1370)
+position = Vector2(6191, -1374)
 
 [editable path="Entities/Enemies/BatSpawner"]

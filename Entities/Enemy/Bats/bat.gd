@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var death_emit = $DeathParticles
 @onready var sprite = $Bat
 
+@onready var death_sound = preload("res://Sounds/explosion.wav")
+
 var health = 1
 
 func _physics_process(delta: float) -> void:
@@ -21,6 +23,7 @@ func take_damage(damage_taken : int):
 		death()
 
 func death():
+	MusicPlayer.play_FX(death_sound)
 	velocity = Vector2(0,0)
 	death_emit.restart()
 	death_emit.emitting = true  

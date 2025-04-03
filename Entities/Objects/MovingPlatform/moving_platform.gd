@@ -12,7 +12,7 @@ var waiting: bool = false
 @onready var start_position: Vector2 = platform.position
 @onready var end_position: Vector2 = start_position + Vector2(x_distance, y_distance)
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	if waiting:
 		return
 

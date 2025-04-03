@@ -40,12 +40,15 @@ script = ExtResource("1_evbld")
 shape = SubResource("CircleShape2D_minxr")
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_8vhq6")
 
 [node name="Bat" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u50dl")
-frame_progress = 0.440063
+autoplay = "default"
+frame_progress = 0.159398
 
 [node name="DeathParticles" parent="." instance=ExtResource("3_minxr")]

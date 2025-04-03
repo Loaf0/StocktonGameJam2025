@@ -10,6 +10,8 @@ const GRAVITY = 900.0
 @onready var sprite = $Quadtopus
 @onready var death_emit = $DeathParticles
 
+@onready var death_sound = preload("res://Sounds/explosion.wav")
+
 enum states {
 	MOVING,
 	IDLE,
@@ -63,6 +65,7 @@ func take_damage(damage_taken : int):
 
 func death():
 	dying = true
+	MusicPlayer.play_FX(death_sound)
 	velocity = Vector2(0,0)
 	# hopefully please just show death particles
 	death_emit.restart()

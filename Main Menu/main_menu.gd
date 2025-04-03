@@ -25,7 +25,9 @@ func _process(delta: float) -> void:
 		shake_timer = 0
 
 func _on_start_pressed() -> void:
-	level_select.show()
+	#level_select.show()
+	var level_scene = "res://Levels/TestLevel/level.tscn"
+	get_tree().change_scene_to_file(level_scene)
 
 func _on_options_pressed() -> void:
 	#bring to options

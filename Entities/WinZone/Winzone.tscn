@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://b8xq5cenfamvp"]
 
 [ext_resource type="Script" uid="uid://cda2qfo37texu" path="res://Entities/WinZone/winzone.gd" id="1_vmjyl"]
-[ext_resource type="Texture2D" uid="uid://bwa2s2iacp513" path="res://Main Menu/Car.png" id="2_l3d2x"]
+[ext_resource type="Texture2D" uid="uid://dk7avxhfx6jd3" path="res://Main Menu/truck.png" id="2_l3d2x"]
 [ext_resource type="Texture2D" uid="uid://bqdb6ljik5yda" path="res://Entities/WinZone/smoke3.png" id="3_l3d2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkppc"]
-size = Vector2(115, 167.5)
+size = Vector2(173, 101.75)
 
 [sub_resource type="Curve" id="Curve_dkppc"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50365, 0.772358), -0.386125, -0.386125, 0, 0, Vector2(0.682482, 0.654472), -1.14238, -1.14238, 0, 0, Vector2(1, 0.154472), 0.0, 0.0, 0, 0]
@@ -71,12 +71,11 @@ collision_mask = 2
 script = ExtResource("1_vmjyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.5, -13.25)
+position = Vector2(-0.5, -14.125)
 shape = SubResource("RectangleShape2D_dkppc")
 
 [node name="Car" type="Sprite2D" parent="."]
 position = Vector2(4, -4)
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_l3d2x")
 
 [node name="Smoke" type="GPUParticles2D" parent="Car"]

@@ -14,6 +14,8 @@ const JUMP_HEIGHT = 150.0
 @onready var detect = $DetectionBox
 @onready var death_emit = $DeathParticles
 
+@onready var death_sound = preload("res://Sounds/explosion.wav")
+
 enum states {
 	MOVING,
 	JUMPING,
@@ -84,6 +86,7 @@ func take_damage(damage_taken : int):
 
 func death():
 	dying = true
+	MusicPlayer.play_FX(death_sound)
 	velocity = Vector2(0,0)
 	# hopefully please just show death particles
 	death_emit.restart()
