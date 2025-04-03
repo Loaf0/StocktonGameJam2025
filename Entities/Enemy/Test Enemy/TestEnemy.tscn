@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cbr5s3p6b4pp4"]
 
-[ext_resource type="Script" uid="uid://c465oer1g44fq" path="res://Entities/Enemy/Test Enemy/BasicEnemy.gd" id="1_oie2v"]
+[ext_resource type="Script" path="res://Entities/Enemy/Test Enemy/BasicEnemy.gd" id="1_oie2v"]
 [ext_resource type="Texture2D" uid="uid://df556fuiqyifc" path="res://Entities/Enemy/Test Enemy/image_2025-03-30_164258789-removebg-preview.png" id="2_oie2v"]
 [ext_resource type="PackedScene" uid="uid://c261fm1rqyjsa" path="res://Entities/Enemy/Quadratopus/death_particles.tscn" id="3_truqn"]
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://by48hp1q552of"
+path="res://.godot/imported/jazz piano but its triangle waves cause it sounds weird.wav-5b539116366a56bd39afb739c8ac8b5e.sample"
+
+[deps]
+
+source_file="res://Sounds/jazz piano but its triangle waves cause it sounds weird.wav"
+dest_files=["res://.godot/imported/jazz piano but its triangle waves cause it sounds weird.wav-5b539116366a56bd39afb739c8ac8b5e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

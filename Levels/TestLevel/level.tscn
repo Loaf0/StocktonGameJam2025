@@ -224,8 +224,11 @@ flight_frequency = 0.03
 flight_speed = -100
 spawn_frequency = 3.0
 
+[node name="Sprite2D" parent="Entities/Enemies/BatSpawner" index="0"]
+position = Vector2(-1, 17)
+
 [node name="CollisionShape2D" parent="Entities/Enemies/BatSpawner/SpawnRange" index="0"]
-position = Vector2(-606, 0)
+position = Vector2(-605, 11)
 
 [node name="Deathwall" parent="Entities/Enemies" instance=ExtResource("4_yq830")]
 position = Vector2(-1502, -486)

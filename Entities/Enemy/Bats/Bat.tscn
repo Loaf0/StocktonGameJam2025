@@ -1,13 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdrt0rklc87wi"]
+[gd_scene load_steps=9 format=3 uid="uid://bdrt0rklc87wi"]
 
 [ext_resource type="Script" uid="uid://kxwvo8h1brhx" path="res://Entities/Enemy/Bats/bat.gd" id="1_evbld"]
-[ext_resource type="Texture2D" uid="uid://bvhw2ynmjuxgo" path="res://Entities/Enemy/Bats/bat.png" id="1_s7ybx"]
+[ext_resource type="Texture2D" uid="uid://h4g8y10h2xo2" path="res://Entities/Enemy/Bats/Bats.png" id="2_minxr"]
 [ext_resource type="PackedScene" uid="uid://c261fm1rqyjsa" path="res://Entities/Enemy/Quadratopus/death_particles.tscn" id="3_minxr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_minxr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8vhq6"]
 radius = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vhq6"]
+atlas = ExtResource("2_minxr")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyo7f"]
+atlas = ExtResource("2_minxr")
+region = Rect2(0, 48, 80, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u50dl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vhq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyo7f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 4
@@ -22,8 +44,8 @@ shape = SubResource("CircleShape2D_minxr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_8vhq6")
 
-[node name="Bat" type="Sprite2D" parent="."]
-scale = Vector2(0.075, 0.075)
-texture = ExtResource("1_s7ybx")
+[node name="Bat" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u50dl")
+frame_progress = 0.440063
 
 [node name="DeathParticles" parent="." instance=ExtResource("3_minxr")]

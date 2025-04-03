@@ -24,6 +24,10 @@ extends CharacterBody2D
 @onready var wall_slide_timer = $WallSlideTimer
 @onready var anim = $AnimationPlayer
 
+@onready var jump_sound = preload("res://Sounds/jump (1).wav")
+@onready var damage_sound = preload("res://Sounds/hitHurt.wav")
+
+
 var is_running: bool = false
 var on_wall: bool = false
 var can_wall_jump: bool = false
@@ -59,7 +63,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, current_friction * delta)
 
 	if not is_on_floor():
-		if anim.current_animation != "swing":
+		if anim.current_animation != "swing" or anim.current_animation != "air swing":
 			anim.play("Jump")
 		if velocity.y > 0:
 			velocity.y += fast_fall_gravity * delta
@@ -70,6 +74,7 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("Jump"):
 		if is_on_floor():
+			MusicPlayer.play_FX(jump_sound)
 			velocity.y = -jump_force
 			is_jumping = true
 			jump_time = 0.0
@@ -80,6 +85,7 @@ func _physics_process(delta):
 			else:
 				velocity = Vector2(-wall_jump_force.x, wall_jump_force.y)
 			is_jumping = false
+			MusicPlayer.play_FX(jump_sound)
 
 	if on_wall and not just_wall_jumped:
 		if velocity.y > 50:
@@ -147,8 +153,9 @@ func attack():
 		# Ground attack animation
 		anim.play("swing")
 	else:
+		attacking = true
 		# Air attack animation
-		attack_air()
+		anim.play("air swing")
 		
 
 func attack_ground():
@@ -185,4 +192,6 @@ func adjust_direction(direction):
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "swing":
+		attacking = false
+	elif anim_name == "air swing":
 		attacking = false

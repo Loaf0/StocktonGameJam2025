@@ -1,5 +1,10 @@
 extends AudioStreamPlayer
 
+@onready var music = preload("res://Sounds/jazz piano but its triangle waves cause it sounds weird.wav")
+
+func _ready() -> void:
+	_play_music(music)
+
 func _play_music(music: AudioStream):
 	if stream == music:
 		return

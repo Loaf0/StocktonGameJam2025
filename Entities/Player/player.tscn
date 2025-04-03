@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dghjnnwt1a7x2"]
+[gd_scene load_steps=14 format=3 uid="uid://dghjnnwt1a7x2"]
 
 [ext_resource type="Script" uid="uid://bqrxrhfswmnia" path="res://Entities/Player/player.gd" id="1_7fm2q"]
 [ext_resource type="Texture2D" uid="uid://t3t6c1vwbx52" path="res://Entities/Player/player.png" id="2_3uyv8"]
@@ -8,8 +8,8 @@ radius = 12.0
 height = 55.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fm2q"]
-radius = 29.0
-height = 58.0
+radius = 24.0
+height = 52.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2x6ej"]
 radius = 14.0
@@ -108,10 +108,41 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_01a4e"]
+resource_name = "air swing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [16, 18]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_air"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5c2io"]
 _data = {
 &"Jump": SubResource("Animation_4wf4l"),
 &"RESET": SubResource("Animation_tekja"),
+&"air swing": SubResource("Animation_01a4e"),
 &"idle": SubResource("Animation_lu8i8"),
 &"running": SubResource("Animation_5c2io"),
 &"swing": SubResource("Animation_3uyv8")
@@ -151,7 +182,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="A_Hitbox"]
-position = Vector2(27, 18)
+position = Vector2(22, 13)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_7fm2q")
 debug_color = Color(0.847059, 0, 0.905882, 0.113725)
@@ -170,7 +201,7 @@ debug_color = Color(0.764706, 0.164706, 1, 0.0313726)
 position = Vector2(0, -11)
 texture = ExtResource("2_3uyv8")
 hframes = 4
-vframes = 4
+vframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
