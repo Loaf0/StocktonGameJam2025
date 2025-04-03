@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	position = position.lerp(target_location, follow_speed * delta)
 
 func find_player_node(node: Node) -> CharacterBody2D:
-	if node is CharacterBody2D:
+	if node is CharacterBody2D and node.is_in_group("player"):
 		return node
 	for child in node.get_children():
 		var result = find_player_node(child)

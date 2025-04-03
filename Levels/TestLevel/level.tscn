@@ -245,6 +245,9 @@ position = Vector2(3869, -472)
 [node name="TestEnemy3" parent="Entities/Enemies" instance=ExtResource("3_4nrq0")]
 position = Vector2(2012, -282)
 
+[node name="Winzone" parent="Entities/Enemies" instance=ExtResource("13_bajg8")]
+position = Vector2(153, 16)
+
 [node name="Collectables" type="Node2D" parent="Entities"]
 
 [node name="Coin3" parent="Entities/Collectables" instance=ExtResource("6_qcy8m")]
