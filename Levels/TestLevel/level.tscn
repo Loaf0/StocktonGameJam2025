@@ -228,8 +228,10 @@ spawn_frequency = 3.0
 position = Vector2(-606, 0)
 
 [node name="Deathwall" parent="Entities/Enemies" instance=ExtResource("4_yq830")]
-visible = false
-position = Vector2(3444, -476)
+position = Vector2(-1502, -486)
+scale = Vector2(1.34558, 2.00341)
+max_speed = 100
+min_speed = 60
 
 [node name="TestEnemy2" parent="Entities/Enemies" instance=ExtResource("3_4nrq0")]
 position = Vector2(427, -16)
