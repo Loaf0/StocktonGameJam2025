@@ -63,7 +63,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, current_friction * delta)
 
 	if not is_on_floor():
-		if anim.current_animation != "swing" or anim.current_animation != "air swing":
+		if anim.current_animation != "swing" and anim.current_animation != "air swing":
 			anim.play("Jump")
 		if velocity.y > 0:
 			velocity.y += fast_fall_gravity * delta
