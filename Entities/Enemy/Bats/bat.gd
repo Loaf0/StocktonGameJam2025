@@ -35,3 +35,8 @@ func death():
 	death_timer.one_shot = true
 	death_timer.connect("timeout", Callable(self, "queue_free"))
 	death_timer.start()
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		body.take_damage(1)
