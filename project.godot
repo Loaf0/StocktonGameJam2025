@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="StocktonGameJam2025"
-run/main_scene="uid://cu0m63v7pqbwb"
+run/main_scene="uid://bao7hf8bsal02"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
