@@ -4,8 +4,8 @@ extends Control
 @onready var level_select = $LevelSelect
 
 # Shaking parameters
-@export var shake_intensity: float = 5.0
-@export var shake_frequency: float = 0.05
+@export var shake_intensity: float = 2.0
+@export var shake_frequency: float = 1.0
 
 var shake_timer: float = 0.0
 var original_position

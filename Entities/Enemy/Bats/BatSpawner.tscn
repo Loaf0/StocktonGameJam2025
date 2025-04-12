@@ -7,6 +7,7 @@
 radius = 866.305
 
 [node name="BatSpawner" type="Node2D"]
+z_index = -1
 script = ExtResource("1_2y65o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
