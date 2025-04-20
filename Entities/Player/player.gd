@@ -49,7 +49,8 @@ func _physics_process(delta):
 	
 	Global.health = health
 	if health <= 0:
-		get_tree().reload_current_scene()
+		anim.play("death")
+		return
 	
 	if attacking:
 		direction_input = 0
