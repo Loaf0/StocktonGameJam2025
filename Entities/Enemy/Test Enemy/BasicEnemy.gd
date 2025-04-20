@@ -39,7 +39,6 @@ func _physics_process(delta: float) -> void:
 			if !dying:
 				death()
 		states.MOVING:
-			sprite.frame = 0
 			velocity.x = direction * SPEED
 			if turn_timer.is_stopped():
 				if direction == 1 and not right_floor_cast.is_colliding(): 

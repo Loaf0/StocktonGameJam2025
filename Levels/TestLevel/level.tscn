@@ -208,6 +208,7 @@ texture = ExtResource("2_rg8qb")
 [node name="Camera" parent="." instance=ExtResource("1_vrtqf")]
 
 [node name="Player" parent="." instance=ExtResource("2_yq830")]
+position = Vector2(-99, 37)
 fast_fall_gravity = 2000.0
 
 [node name="Foreground" type="TileMapLayer" parent="."]
@@ -238,7 +239,7 @@ max_speed = 120
 min_speed = 80
 
 [node name="TestEnemy2" parent="Entities/Enemies" instance=ExtResource("3_4nrq0")]
-position = Vector2(427, -16)
+position = Vector2(431, -26)
 
 [node name="Quadtopus" parent="Entities/Enemies" instance=ExtResource("9_u238e")]
 position = Vector2(1365, -117)

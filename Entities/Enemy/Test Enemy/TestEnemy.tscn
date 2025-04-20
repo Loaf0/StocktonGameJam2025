@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbr5s3p6b4pp4"]
+[gd_scene load_steps=11 format=3 uid="uid://cbr5s3p6b4pp4"]
 
 [ext_resource type="Script" uid="uid://c465oer1g44fq" path="res://Entities/Enemy/Test Enemy/BasicEnemy.gd" id="1_oie2v"]
 [ext_resource type="Texture2D" uid="uid://iwv13j585f35" path="res://Entities/Enemy/Duotupos/bounce.png" id="2_oie2v"]
@@ -10,6 +10,42 @@ height = 44.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oie2v"]
 size = Vector2(27, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oie2v"]
+atlas = ExtResource("2_oie2v")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_truqn"]
+atlas = ExtResource("2_oie2v")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otd0a"]
+atlas = ExtResource("2_oie2v")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trkvy"]
+atlas = ExtResource("2_oie2v")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_otd0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oie2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_truqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otd0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trkvy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.3
+}]
 
 [node name="TestEnemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -31,9 +67,10 @@ one_shot = true
 position = Vector2(0.5, 6)
 shape = SubResource("RectangleShape2D_oie2v")
 
-[node name="Quadtopus" type="Sprite2D" parent="."]
-texture = ExtResource("2_oie2v")
-hframes = 2
+[node name="Quadtopus" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_otd0a")
+autoplay = "default"
+frame_progress = 0.34236
 
 [node name="RightFloorCast" type="RayCast2D" parent="."]
 position = Vector2(11, 0)

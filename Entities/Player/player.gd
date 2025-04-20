@@ -161,7 +161,7 @@ func attack():
 func attack_ground():
 	for body in ground_hitbox.get_overlapping_bodies():
 		if body.has_method("take_damage") and !body.is_in_group("player"):
-			#HitStop.freeze_frame(.1) feels bad rn
+			#HitStop.freeze_frame(.1)
 			body.take_damage(1)
 	pass
 
