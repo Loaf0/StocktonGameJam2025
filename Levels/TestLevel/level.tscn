@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cu0m63v7pqbwb"]
+[gd_scene load_steps=22 format=4 uid="uid://cu0m63v7pqbwb"]
 
 [ext_resource type="PackedScene" uid="uid://jb6fumfk082c" path="res://Entities/Player/ui.tscn" id="1_fomdt"]
 [ext_resource type="Texture2D" uid="uid://77rqd12iqktr" path="res://Environment/Backgrounds/Forest 2.png" id="1_v00j8"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bpleojmnin7cf" path="res://Entities/Enemy/Bats/BatSpawner.tscn" id="12_vabn7"]
 [ext_resource type="PackedScene" uid="uid://b8xq5cenfamvp" path="res://Entities/WinZone/Winzone.tscn" id="13_bajg8"]
 [ext_resource type="Texture2D" uid="uid://ddb6m63hag25j" path="res://Entities/Objects/DeathWall.png" id="15_qft08"]
+[ext_resource type="PackedScene" uid="uid://cj4g2jrd1h0c4" path="res://Entities/Objects/Sign/sign.tscn" id="16_io6gj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qft08"]
 texture = ExtResource("6_rg8qb")
@@ -229,7 +230,7 @@ texture = ExtResource("2_rg8qb")
 [node name="Camera" parent="." instance=ExtResource("1_vrtqf")]
 
 [node name="Player" parent="." instance=ExtResource("2_yq830")]
-position = Vector2(-99, 37)
+position = Vector2(-232, 38)
 fast_fall_gravity = 2000.0
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -251,8 +252,9 @@ tile_set = SubResource("TileSet_fomdt")
 [node name="BatSpawner" parent="Entities/Enemies" instance=ExtResource("12_vabn7")]
 position = Vector2(4944, -696)
 flight_frequency = 0.03
+flight_magnatude = 120
 flight_speed = -100
-spawn_frequency = 3.0
+spawn_frequency = 3.5
 
 [node name="Sprite2D" parent="Entities/Enemies/BatSpawner" index="0"]
 position = Vector2(0, 18)
@@ -361,6 +363,8 @@ z_index = -1
 position = Vector2(4846, -253)
 rotation = 4.71239
 texture = ExtResource("15_qft08")
+
+[node name="Sign" parent="Entities" instance=ExtResource("16_io6gj")]
 
 [node name="Winzone" parent="." instance=ExtResource("13_bajg8")]
 position = Vector2(6191, -1374)

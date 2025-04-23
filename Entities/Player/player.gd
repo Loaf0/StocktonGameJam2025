@@ -22,6 +22,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite
 @onready var invul_timer = $InvulTimer
 @onready var wall_slide_timer = $WallSlideTimer
+@onready var attack_duration = $AttackDuration
 @onready var anim = $AnimationPlayer
 
 @onready var jump_sound = preload("res://Sounds/jump (1).wav")
@@ -46,6 +47,11 @@ func _physics_process(delta):
 	var target_speed = (run_speed if is_running else walk_speed) * direction_input
 	var current_acceleration = air_acceleration if not is_on_floor() else acceleration
 	var current_friction = air_friction if not is_on_floor() else friction
+	
+	if ground_hitbox.monitoring:
+		attack_ground()
+	if air_hitbox.monitoring:
+		attack_air()
 	
 	Global.health = health
 	if health <= 0:
@@ -149,15 +155,20 @@ func player_on_wall():
 	return left_cast.is_colliding() or right_cast.is_colliding()
 
 func attack():
+	attacking = true
+
+	# keep hitbox active for attack_duration until timeout
+	attack_duration.start()
 	if is_on_floor():
-		attacking = true
-		# Ground attack animation
+		# animation calls the attack function
 		anim.play("swing")
+		ground_hitbox.monitoring = true
 	else:
-		attacking = true
-		# Air attack animation
+		# animation calls the attack function
 		anim.play("air swing")
-		
+		air_hitbox.monitoring = true
+	
+	
 
 func attack_ground():
 	for body in ground_hitbox.get_overlapping_bodies():
@@ -197,3 +208,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		attacking = false
 	elif anim_name == "air swing":
 		attacking = false
+
+
+func _on_attack_duration_timeout() -> void:
+	attacking = false
+	air_hitbox.monitoring = false
+	ground_hitbox.monitoring = false

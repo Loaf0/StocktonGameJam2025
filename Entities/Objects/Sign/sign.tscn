@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj4g2jrd1h0c4"]
+
+[ext_resource type="Texture2D" uid="uid://it3i5vfw1dyj" path="res://Entities/Enemy/Test Enemy/scaraslag.png" id="1_d13jv"]
+[ext_resource type="Script" uid="uid://dw8o1l1teuwy3" path="res://Entities/Objects/Sign/sign.gd" id="1_ns05d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxpqh"]
+size = Vector2(127, 121.5)
+
+[node name="Sign" type="Node2D"]
+script = ExtResource("1_ns05d")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_mxpqh")
+
+[node name="Sign" type="Sprite2D" parent="."]
+position = Vector2(0, 38)
+rotation = 1.57079
+texture = ExtResource("1_d13jv")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -41.0
+offset_right = 68.0
+offset_bottom = -18.0
+text = "Press Z to attack!"
+
+[node name="TypingTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="InteractionBox" to="." method="_on_interaction_box_body_entered"]
+[connection signal="body_exited" from="InteractionBox" to="." method="_on_interaction_box_body_exited"]

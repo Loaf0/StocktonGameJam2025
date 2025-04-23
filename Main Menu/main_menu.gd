@@ -30,7 +30,7 @@ func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file(level_scene)
 
 func _on_options_pressed() -> void:
-	#bring to options
+	# bring to options
 	pass # Replace with function body.
 
 func _on_exit_game_pressed() -> void:

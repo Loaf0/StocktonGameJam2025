@@ -76,6 +76,22 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_7a1se"]
+resource_name = "death"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
 [sub_resource type="Animation" id="Animation_lu8i8"]
 resource_name = "idle"
 length = 0.6
@@ -140,22 +156,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_7a1se"]
-resource_name = "death"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [20]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5c2io"]
 _data = {
 &"Jump": SubResource("Animation_4wf4l"),
@@ -184,6 +184,10 @@ one_shot = true
 [node name="InvulTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AttackDuration" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [node name="PlayerCollider" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(0, -0.499999)
 shape = SubResource("CapsuleShape2D_3uyv8")
@@ -199,6 +203,7 @@ target_position = Vector2(20, 0)
 [node name="A_Hitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="A_Hitbox"]
 position = Vector2(24, 13)
@@ -209,6 +214,7 @@ debug_color = Color(0.847059, 0, 0.905882, 0.113725)
 [node name="G_Hitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="G_Hitbox"]
 position = Vector2(30, -4)
@@ -235,4 +241,5 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_lu8i8")
 
+[connection signal="timeout" from="AttackDuration" to="." method="_on_attack_duration_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
