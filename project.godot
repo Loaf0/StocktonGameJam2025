@@ -32,6 +32,10 @@ window/stretch/mode="viewport"
 player=""
 enemy=""
 
+[gui]
+
+theme/custom_font="uid://dqvm3dhpo7ybc"
+
 [input]
 
 Up={

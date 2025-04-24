@@ -1,8 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://jb6fumfk082c"]
+[gd_scene load_steps=26 format=3 uid="uid://jb6fumfk082c"]
 
 [ext_resource type="Script" uid="uid://ddje04ebn6ovs" path="res://ui.gd" id="1_xdotd"]
 [ext_resource type="Texture2D" uid="uid://evipeh8so2e0" path="res://Entities/Player/healthbar.png" id="2_m0udv"]
 [ext_resource type="Texture2D" uid="uid://ces8kitc2a01c" path="res://UI/death.png" id="3_2dihi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2dihi"]
+font_size = 32
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vfu8"]
 atlas = ExtResource("3_2dihi")
@@ -175,6 +178,7 @@ layout_mode = 0
 offset_right = 323.0
 offset_bottom = 184.0
 text = "Score : 0"
+label_settings = SubResource("LabelSettings_2dihi")
 
 [node name="Death" type="AnimatedSprite2D" parent="Control"]
 visible = false

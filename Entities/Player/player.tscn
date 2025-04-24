@@ -8,12 +8,12 @@ radius = 12.0
 height = 55.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fm2q"]
-radius = 24.0
-height = 52.0
+radius = 19.0
+height = 64.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2x6ej"]
 radius = 14.0
-height = 56.0
+height = 40.0
 
 [sub_resource type="Animation" id="Animation_4wf4l"]
 resource_name = "Jump"
@@ -206,8 +206,7 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="A_Hitbox"]
-position = Vector2(24, 13)
-rotation = -1.57079
+position = Vector2(16, -4)
 shape = SubResource("CapsuleShape2D_7fm2q")
 debug_color = Color(0.847059, 0, 0.905882, 0.113725)
 
@@ -217,7 +216,7 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="G_Hitbox"]
-position = Vector2(30, -4)
+position = Vector2(21, -4)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_2x6ej")
 debug_color = Color(0.764706, 0.164706, 1, 0.0313726)
